@@ -10,91 +10,82 @@ namespace GildedRose
             this.Items = Items;
         }
 
+        private const int QualityLimit = 50;
+
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var item in Items)
             {
-                if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
+
+                if (item.Name == "Aged Brie")
                 {
-                    if (Items[i].Quality > 0)
+                    IncrementQuality(item);
+                }
+                else if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                {
+                    IncrementQuality(item);
+
+                    if (item.SellIn < 11)
                     {
-                        if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                        {
-                            Items[i].Quality = Items[i].Quality - 1;
-                        }
+                        IncrementQuality(item);
+                    }
+
+                    if (item.SellIn < 6)
+                    {
+                        IncrementQuality(item);
                     }
                 }
-                else
+                else if (item.Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    if (Items[i].Quality < 50)
-                    {
-                        Items[i].Quality = Items[i].Quality + 1;
-
-                        if (Items[i].Name == "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].SellIn < 11)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
-
-                            if (Items[i].SellIn < 6)
-                            {
-                                if (Items[i].Quality < 50)
-                                {
-                                    Items[i].Quality = Items[i].Quality + 1;
-                                }
-                            }
-                        }
-                    }
+                    DecrementQuality(item);
                 }
 
-                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
+                if (item.Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    Items[i].SellIn = Items[i].SellIn - 1;
+                    DecrementSellIn(item);
                 }
 
-                if (Items[i].SellIn < 0)
+                if (item.SellIn < 0)
                 {
-                    if (Items[i].Name != "Aged Brie")
+                    if (item.Name == "Aged Brie")
                     {
-                        if (Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
-                        {
-                            if (Items[i].Quality > 0)
-                            {
-                                if (Items[i].Name != "Sulfuras, Hand of Ragnaros")
-                                {
-                                    Items[i].Quality = Items[i].Quality - 1;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Items[i].Quality = Items[i].Quality - Items[i].Quality;
-                        }
+                        IncrementQuality(item);
                     }
-                    else
+                    else if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
                     {
-                        if (Items[i].Quality < 50)
-                        {
-                            Items[i].Quality = Items[i].Quality + 1;
-                        }
+                        item.Quality = 0;
                     }
+                    else if (item.Name != "Sulfuras, Hand of Ragnaros")
+                    {
+                        DecrementQuality(item);
+                    }
+
                 }
             }
         }
 
+        private static void DecrementSellIn(Item item)
+        {
+            item.SellIn = item.SellIn - 1;
+        }
+
+        private static void DecrementQuality(Item item)
+        {
+            if (item.Quality > 0)
+            {
+                item.Quality = item.Quality - 1;
+            }
+        }
+
+        private static void IncrementQuality(Item item)
+        {
+            if (item.Quality < QualityLimit)
+            {
+                item.Quality = item.Quality + 1;
+            }
+        }
     }
 
-    public class Item
-    {
-        public string Name { get; set; }
 
-        public int SellIn { get; set; }
-
-        public int Quality { get; set; }
-    }
 
 }
