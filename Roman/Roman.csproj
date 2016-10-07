@@ -7,8 +7,8 @@
     <ProjectGuid>{1ECDA59C-2442-4C51-B0A1-D6696C8F7135}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RPNCalculator</RootNamespace>
-    <AssemblyName>RPNCalculator</AssemblyName>
+    <RootNamespace>Roman</RootNamespace>
+    <AssemblyName>Roman</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RPNCalculator.cs" />
+    <Compile Include="RomanConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
