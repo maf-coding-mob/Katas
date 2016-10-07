@@ -7,8 +7,8 @@
     <ProjectGuid>{1ECDA59C-2442-4C51-B0A1-D6696C8F7135}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RPNCalculator</RootNamespace>
-    <AssemblyName>RPNCalculator</AssemblyName>
+    <RootNamespace>GildedRose</RootNamespace>
+    <AssemblyName>GildedRose</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,9 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackstageItem.cs" />
+    <Compile Include="SulfurasItem.cs" />
+    <Compile Include="AgedBrieItem.cs" />
+    <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RPNCalculator.cs" />
+    <Compile Include="GildedRose.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
